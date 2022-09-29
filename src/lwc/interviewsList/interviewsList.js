@@ -8,5 +8,19 @@ import showInterviews from "@salesforce/apex/InterviewsListController.showInterv
 export default class InterviewsList extends LightningElement {
     @api recordId;
     @track data;
-    @wire(showInterviews, { recordId: "$recordId" }) data;
+    // @wire(showInterviews, { recordId: "$recordId" })
+    // wireData(data, errr) {
+    //     if data
+    // }
+
+    @wire(showInterviews, {recordId: '$recordId'})
+    showInterviews({error, data}) {
+        if (data) {
+            this.data = data;
+            console.log('data', this.data);
+
+        } else if (error) {
+            console.log('error', error);
+        }
+    }
 }

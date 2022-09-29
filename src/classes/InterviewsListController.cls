@@ -3,9 +3,8 @@
  */
 
 public with sharing class InterviewsListController {
-    @AuraEnabled
-    public static List<Interview__c> showInterviews(Id interviewId) {
-        List<Interview__c> interviews = [SELECT Name FROM Interview__c WHERE Id=:interviewId];
-        return interviews;
+    @AuraEnabled(Cacheable=true)
+    public static List<Interview__c> showInterviews(Id recordId) {
+        return [SELECT Name, CompanyId__c FROM Interview__c WHERE CompanyId__c =:recordId];
     }
 }
