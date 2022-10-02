@@ -1,15 +1,9 @@
 /**
- * Created by odrozd on 9/30/22.
+ * Created by odrozd on 10/3/22.
  */
 
-trigger AssignInterview on Account (before insert, after insert) {
-    List<Contact> assignedInterviews =  [SELECT Name, (SELECT Name FROM Interviews__r)
-    FROM Contact
-    WHERE RecordType.Name='Interviewer Account'];
+trigger AssignInterview on Interview__c (after update, after insert) {
+    List<Interview__c> interviews = [SELECT Id FROM Interview__c];
+    AssignInterviewTriggerHandler.handle(interviews, Trigger.operationType);
 
-    for (Contact c : assignedInterviews) {
-        if (c.Interviews__r.size() >= 3) {
-            Trigger.oldMap.get(c.Id).addError('Only 3 interviews per week can be assigned');
-        }
-    }
 }
