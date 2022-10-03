@@ -136,5 +136,13 @@
         <filterScope>Everything</filterScope>
         <label>All Failed Records</label>
     </listViews>
+    <listViews>
+        <fullName>All_Failed_Records</fullName>
+        <columns>Name</columns>
+        <columns>Record</columns>
+        <columns>ErrorDescription</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Failed Records</label>
+    </listViews>
     <sharingModel>ControlledByParent</sharingModel>
 </CustomObject>

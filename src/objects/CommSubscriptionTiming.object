@@ -165,6 +165,11 @@
         <filterScope>Everything</filterScope>
         <label>All Communication Subscription Timings</label>
     </listViews>
+    <listViews>
+        <fullName>All_CommSubscriptionTimings</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All Communication Subscription Timings</label>
+    </listViews>
     <searchLayouts>
         <customTabListAdditionalFields>Unit</customTabListAdditionalFields>
         <customTabListAdditionalFields>Offset</customTabListAdditionalFields>

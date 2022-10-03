@@ -7,10 +7,11 @@ public with sharing class AssignInterviewService {
         List<Id> vacanciesToOpen = new List<Id>();
         List<Id> vacanciesToClose = new List<Id>();
 
-        List<Interview__c> allInterviews = [SELECT Id, Name FROM Interview__c WHEREE];
+        List<Interview__c> allInterviews = [SELECT Id, Name, Candidate_Approved__c, VacancyId__c
+                                            FROM Interview__c];
         for (Interview__c interview : allInterviews) {
             if (interview.Candidate_Approved__c == true) {
-                vacanciesToClose.add(interview.Vacancy__c);
+                vacanciesToClose.add(interview.VacancyId__c);
             } else {
                 vacanciesToOpen.add(interview.VacancyId__c);
             }
@@ -18,13 +19,13 @@ public with sharing class AssignInterviewService {
 
         List<Vacancy__c> vacancies = new List<Vacancy__c>();
         vacancies.addAll(updateVacancyStatus(vacanciesToClose, false));
-        vacancies.addAll(updateVacancyStatus(vacanciesToOpen. false));
+        vacancies.addAll(updateVacancyStatus(vacanciesToOpen, false));
         update vacancies;
 
     }
 
     private static List<Vacancy__c> updateVacancyStatus(List<Id> vacancies, Boolean isOpen) {
-        List<Vacancy__c> vacanciesToReturn = [SELECT Id from Vacancy__c WHERE Id IN :vacancies];
+        List<Vacancy__c> vacanciesToReturn = [SELECT Id FROM Vacancy__c WHERE Id IN :vacancies];
         for (Vacancy__c vacancy : vacanciesToReturn) {
             vacancy.Is_Open__c = isOpen;
         }

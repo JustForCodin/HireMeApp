@@ -14,6 +14,10 @@
         <relationshipLabel><!-- Interviews (Candidate) --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Candidate Approved --></label>
+        <name>Candidate_Approved__c</name>
+    </fields>
+    <fields>
         <label><!-- Company --></label>
         <name>CompanyId__c</name>
         <relationshipLabel><!-- Interviews --></relationshipLabel>
@@ -21,6 +25,15 @@
     <fields>
         <label><!-- Interviewer --></label>
         <name>ContactId__c</name>
+        <relationshipLabel><!-- Interviews --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Created Date --></label>
+        <name>Created_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Vacancy --></label>
+        <name>VacancyId__c</name>
         <relationshipLabel><!-- Interviews --></relationshipLabel>
     </fields>
     <startsWith>Consonant</startsWith>
