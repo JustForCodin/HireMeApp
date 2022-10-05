@@ -9,6 +9,7 @@ public with sharing class AssignInterviewTriggerHandler {
             when AFTER_UPDATE, AFTER_INSERT{
                 AssignInterviewService.updateRelatedVacancies(interviews);
                 AssignInterviewService.checkInterviewsNumber(interviews);
+                AssignInterviewService.createJobOffer(interviews);
             }
         }
     }

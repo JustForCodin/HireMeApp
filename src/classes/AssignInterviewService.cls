@@ -43,19 +43,17 @@ public with sharing class AssignInterviewService {
         }
     }
 
-    public static void createJobOffer() {
+    public static void createJobOffer(List<Interview__c> interviews) {
         List<Vacancy__c> vacancies = [SELECT Id FROM Vacancy__c];
-        List<Interview__c> interviews = [SELECT Id FROM Interview__c];
+//        List<Interview__c> interviews = [SELECT Id FROM Interview__c];
         for (Vacancy__c vacancy : vacancies) {
             for (Interview__c interview : interviews) {
-                if (vacancy.Is_Open__c == false) {
-                    if (vacancy.Is_Open__c == false && interview.Candidate_Approved__c == true) {
-                        insert new Job_Offer__c(
-                                InterviewId__c = interview.Id,
-                                VacancyId__c   = vacancy.Id,
-                                CompanyId__c   = interview.CompanyId__c
-                        );
-                    }
+                if (vacancy.Is_Open__c == false && interview.Candidate_Approved__c == true) {
+                    insert new Job_Offer__c(
+                            InterviewId__c = interview.Id,
+                            VacancyId__c   = vacancy.Id,
+                            CompanyId__c   = interview.CompanyId__c
+                    );
                 }
             }
         }
