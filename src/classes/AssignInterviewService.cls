@@ -37,8 +37,22 @@ public with sharing class AssignInterviewService {
                                                 FROM Contact
                                                 WHERE RecordType.Name='Interviewer Account'];
         for (Contact c : contactsWithInterviews) {
-            if (c.Interviews__r.size() >= 3) {
+            if (c.Interviews__r.size() > 3) {
                 interviews[0].addError('TEST ERROR!!!!!');
+            }
+        }
+    }
+
+    public static void createJobOffer() {
+        List<Vacancy__c> vacancies = [SELECT Id FROM Vacancy__c];
+        List<Interview__c> interviews = [SELECT Id FROM Interview__c];
+        for (Vacancy__c vacancy : vacancies) {
+            for (Interview__c interview : interviews) {
+                if (vacancy.Is_Open__c == false) {
+                    if (vacancy.Is_Open__c == false && interview.Candidate_Approved__c == true) {
+                        insert new Offer();
+                    }
+                }
             }
         }
     }
