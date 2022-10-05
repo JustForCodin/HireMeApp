@@ -50,7 +50,11 @@ public with sharing class AssignInterviewService {
             for (Interview__c interview : interviews) {
                 if (vacancy.Is_Open__c == false) {
                     if (vacancy.Is_Open__c == false && interview.Candidate_Approved__c == true) {
-                        insert new Offer();
+                        insert new Job_Offer__c(
+                                InterviewId__c = interview.Id,
+                                VacancyId__c   = vacancy.Id,
+                                CompanyId__c   = interview.CompanyId__c
+                        );
                     }
                 }
             }
