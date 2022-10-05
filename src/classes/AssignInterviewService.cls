@@ -31,4 +31,15 @@ public with sharing class AssignInterviewService {
         }
         return vacanciesToReturn;
     }
+
+    public static void checkInterviewsNumber(List<Interview__c> interviews) {
+        List<Contact> contactsWithInterviews = [SELECT Name, (SELECT Name FROM Interviews__r)
+                                                FROM Contact
+                                                WHERE RecordType.Name='Interviewer Account'];
+        for (Contact c : contactsWithInterviews) {
+            if (c.Interviews__r.size() >= 3) {
+                interviews[0].addError('TEST ERROR!!!!!');
+            }
+        }
+    }
 }

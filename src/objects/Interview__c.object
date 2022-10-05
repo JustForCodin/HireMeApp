@@ -186,6 +186,14 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Conducted_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Conducted Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>ContactId__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>

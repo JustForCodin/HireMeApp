@@ -23,6 +23,10 @@
         <relationshipLabel><!-- Interviews --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Conducted Date --></label>
+        <name>Conducted_Date__c</name>
+    </fields>
+    <fields>
         <label><!-- Interviewer --></label>
         <name>ContactId__c</name>
         <relationshipLabel><!-- Interviews --></relationshipLabel>

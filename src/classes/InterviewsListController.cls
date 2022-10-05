@@ -5,8 +5,9 @@
 public with sharing class InterviewsListController {
     @AuraEnabled(Cacheable=true)
     public static List<Interview__c> showInterviews(Id recordId) {
-        return getInterviewsPerWeek([SELECT Name, CompanyId__c FROM Interview__c WHERE CompanyId__c =:recordId]);
+        return getInterviewsPerWeek([SELECT Name, CompanyId__c FROM Interview__c WHERE Id =:recordId]);
     }
+
     private static Integer getWeekNumber(Date value) {
         Integer daysSince1900_01_07 = Date.newInstance(1900, 1, 7).daysBetween(value);
         Integer dayNumber = Math.mod(daysSince1900_01_07, 7) + 1;
