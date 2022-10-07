@@ -24,6 +24,7 @@ public with sharing class AssignInterviewService {
 
     }
 
+    @TestVisible
     private static List<Vacancy__c> updateVacancyStatus(List<Id> vacancies, Boolean isOpen) {
         List<Vacancy__c> vacanciesToReturn = [SELECT Id FROM Vacancy__c WHERE Id IN :vacancies];
         for (Vacancy__c vacancy : vacanciesToReturn) {

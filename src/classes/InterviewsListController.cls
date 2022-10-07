@@ -8,6 +8,7 @@ public with sharing class InterviewsListController {
         return getInterviewsPerWeek([SELECT Name, CompanyId__c, Conducted_Date__c FROM Interview__c WHERE CompanyId__c =:recordId]);
     }
 
+    @TestVisible
     private static Integer getWeekNumber(Date value) {
         Integer daysSince1900_01_07 = Date.newInstance(1900, 1, 7).daysBetween(value);
         Integer dayNumber = Math.mod(daysSince1900_01_07, 7) + 1;
@@ -22,13 +23,15 @@ public with sharing class InterviewsListController {
         return week;
     }
 
+    @TestVisible
     private static List<Interview__c> getInterviewsPerWeek(List<Interview__c> interviews) {
-        List<Interview__c> interviewsToReturn = new List<Interview__c>();
+        List<Interview__c> interviewsPerWeek = new List<Interview__c>();
         for (Interview__c interview : interviews) {
-            if (interview.Conducted_Date__c != null && getWeekNumber(interview.Conducted_Date__c) == getWeekNumber(Date.today())) {
-                interviewsToReturn.add(interview);
+            if (interview.Conducted_Date__c != null && getWeekNumber(interview.Conducted_Date__c) == getWeekNumber(Date.today()))
+            {
+                interviewsPerWeek.add(interview);
             }
         }
-        return interviewsToReturn;
+        return interviewsPerWeek;
     }
 }
