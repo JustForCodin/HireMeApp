@@ -5,7 +5,7 @@
 public with sharing class InterviewsListController {
     @AuraEnabled(Cacheable=true)
     public static List<Interview__c> showInterviews(Id recordId) {
-        return getInterviewsPerWeek([SELECT Name, CompanyId__c FROM Interview__c WHERE Id =:recordId]);
+        return getInterviewsPerWeek([SELECT Name, CompanyId__c, Conducted_Date__c FROM Interview__c WHERE CompanyId__c =:recordId]);
     }
 
     private static Integer getWeekNumber(Date value) {
@@ -23,9 +23,10 @@ public with sharing class InterviewsListController {
     }
 
     private static List<Interview__c> getInterviewsPerWeek(List<Interview__c> interviews) {
+        System.debug('interviews --- ');
         List<Interview__c> interviewsToReturn = new List<Interview__c>();
         for (Interview__c interview : interviews) {
-            if (getWeekNumber(interview.Conducted_Date__c) == getWeekNumber(Date.today())) {
+            if (interview.Conducted_Date__c != null && getWeekNumber(interview.Conducted_Date__c) == getWeekNumber(Date.today())) {
                 interviewsToReturn.add(interview);
             }
         }
