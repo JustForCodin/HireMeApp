@@ -23,7 +23,6 @@ public with sharing class InterviewsListController {
     }
 
     private static List<Interview__c> getInterviewsPerWeek(List<Interview__c> interviews) {
-        System.debug('interviews --- ');
         List<Interview__c> interviewsToReturn = new List<Interview__c>();
         for (Interview__c interview : interviews) {
             if (interview.Conducted_Date__c != null && getWeekNumber(interview.Conducted_Date__c) == getWeekNumber(Date.today())) {
